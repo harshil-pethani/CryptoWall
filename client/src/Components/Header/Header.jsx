@@ -1,5 +1,6 @@
 import "./header.scss";
 import React from 'react'
+import { homeImage } from "../../Config/api";
 
 const Header = () => {
     return (
@@ -24,7 +25,7 @@ const Header = () => {
             </div>
             <div className="right">
                 <div className="imgContainer">
-                    <img src="/images/illustration.png" alt="" />
+                    <img src={homeImage} alt="" />
                 </div>
             </div>
         </div>

@@ -1,3 +1,4 @@
+import { subscribeImage } from '../../Config/api';
 import './subscribe.scss';
 
 const Subscribe = () => {
@@ -14,7 +15,7 @@ const Subscribe = () => {
             </div>
             <div className="right">
                 <div className="imgContainer">
-                    <img src="/images/subscribe.png" alt="" />
+                    <img src={subscribeImage} alt="" />
                 </div>
             </div>
         </div>

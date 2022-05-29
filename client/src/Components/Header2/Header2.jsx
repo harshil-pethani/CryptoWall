@@ -1,5 +1,6 @@
 import "./header2.scss";
 import React from 'react'
+import { marketImage } from "../../Config/api";
 
 const Header2 = () => {
     return (
@@ -23,7 +24,7 @@ const Header2 = () => {
             </div>
             <div className="right">
                 <div className="imgContainer">
-                    <img src="/images/ill3.png" alt="" />
+                    <img src={marketImage} alt="" />
                 </div>
             </div>
         </div>

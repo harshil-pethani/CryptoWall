@@ -17,6 +17,20 @@ export const getNews2 = () =>
     `https://newsapi.org/v2/everything?q=crypto&from=2022-04-18&sortBy=publishedAt&apiKey=415cdb6ced96460d896649287d62bae4`;
 
 
+export const marketImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fill3.png?alt=media&token=1d4baab5-5c53-4c04-b2a6-67463338b011`;
+
+export const homeImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fillustration.png?alt=media&token=50d71869-f780-4929-b0bf-23c126d26d88`;
+
+export const inrImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Finr.jpg?alt=media&token=2a00495f-2d59-414d-939d-06b3bcd00252`;
+
+export const usdImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fusa.jpg?alt=media&token=09f915a2-3603-4f74-8848-e895ae0a88fa`;
+
+export const loginImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Flogin.png?alt=media&token=a794357f-8d81-4acf-a067-e0bb2976ce01`;
+
+export const signupImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fsignup.png?alt=media&token=72ad4aed-3674-441e-99a0-dfce04f1fb1c`;
+
+export const subscribeImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fsubscribe.png?alt=media&token=db5e7d87-8d15-4e5e-ab99-65d29b1bd14a`;
+
 export const registerUser = `https://cryptowal.herokuapp.com/api/auth/register`;
 
 export const loginUser = `https://cryptowal.herokuapp.com/api/auth/login`;

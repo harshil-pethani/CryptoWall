@@ -4,7 +4,7 @@ import './signup.scss';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { registerUser } from '../../Config/api';
+import { registerUser, signupImage } from '../../Config/api';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 
@@ -39,7 +39,7 @@ const Signup = () => {
             <Navbar />
             <div className="mainContainer">
                 <div className="signupleft">
-                    <img src="/images/signup.png" alt="" />
+                    <img src={signupImage} alt="" />
                 </div>
                 <div className="signupright">
 

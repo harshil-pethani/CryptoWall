@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import './login.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { loginUser } from '../../Config/api';
+import { loginImage, loginUser } from '../../Config/api';
 import { userContext } from '../../App';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
@@ -48,7 +48,7 @@ const Login = () => {
             <Navbar />
             <div className="mainContainer">
                 <div className="loginleft">
-                    <img src="/images/login.png" alt="" />
+                    <img src={loginImage} alt="" />
                 </div>
                 <div className="loginright">
                     <h1 className="title">

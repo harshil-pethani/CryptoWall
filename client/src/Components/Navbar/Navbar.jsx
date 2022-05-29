@@ -5,7 +5,7 @@ import { currencyContext, userContext } from "../../App";
 import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { logoutUser } from "../../Config/api";
+import { inrImage, logoutUser, usdImage } from "../../Config/api";
 
 const Navbar = () => {
     const { currency, setCurrency } = useContext(currencyContext);
@@ -93,7 +93,7 @@ const Navbar = () => {
                     </div>
                     <div className="r2">
                         <div className="selectBox">
-                            <img src={currency === "inr" ? "/images/inr.jpg" : "/images/usa.jpg"} alt="" />
+                            <img src={currency === "inr" ? inrImage : usdImage} alt="" />
                             <select name="currency" id="" onChange={(e) => setCurrency(e.target.value)}>
                                 <option value="inr" id="inr" defaultValue={currency === "inr"}>
                                     INR
