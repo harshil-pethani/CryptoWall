@@ -17,6 +17,8 @@ export const getNews2 = () =>
     `https://newsapi.org/v2/everything?q=crypto&from=2022-04-18&sortBy=publishedAt&apiKey=415cdb6ced96460d896649287d62bae4`;
 
 
+export const logoImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Flogo.png?alt=media&token=73e101bd-1271-4eb8-a142-96bd582e34b1`;
+
 export const marketImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fill3.png?alt=media&token=1d4baab5-5c53-4c04-b2a6-67463338b011`;
 
 export const homeImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fillustration.png?alt=media&token=50d71869-f780-4929-b0bf-23c126d26d88`;
