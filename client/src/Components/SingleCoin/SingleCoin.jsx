@@ -1,5 +1,6 @@
 import { Favorite, InfoOutlined } from '@material-ui/icons';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { addCoinList, SingleCoinDetails } from '../../Config/api';
@@ -20,8 +21,9 @@ const SingleCoin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isFav, setIsFav] = useState(false);
     const { currency } = useContext(currencyContext);
-    let { favCoins, setFavCoins } = useContext(userContext);
+    let { user, favCoins, setFavCoins } = useContext(userContext);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const coinId = location.pathname.split("/")[2];
 
@@ -35,6 +37,10 @@ const SingleCoin = () => {
     }
 
     const addToFav = async (id) => {
+        if (!user) {
+            navigate("/login");
+            return;
+        }
         if (favCoins.includes(id)) {
             toast.warn("Coin Already in Your List", {
                 position: "top-center"
