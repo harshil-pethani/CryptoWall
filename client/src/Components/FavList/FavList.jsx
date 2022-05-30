@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { currencyContext, userContext } from '../../App';
-import { CoinList } from '../../Config/api';
+import { CoinList, findCoinList } from '../../Config/api';
 import Loader from '../Loader/Loader';
 import "./favList.scss";
 
@@ -12,8 +12,21 @@ const FavList = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [coins, setCoins] = useState([]);
     const { currency } = useContext(currencyContext);
-    const { favCoins } = useContext(userContext);
+    const { user, setUser, favCoins, setFavCoins } = useContext(userContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const getUser = async () => {
+            const res = await axios.get(findCoinList);
+            if (res.data.success === true) {
+                (res.data.coinList) && setFavCoins(res.data.coinList);
+                setUser(res.data.rootUser);
+            } else {
+                setUser(null);
+            }
+        }
+        getUser();
+    }, []);
 
 
     const findCoin = (coinname) => {
