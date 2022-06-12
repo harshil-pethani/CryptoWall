@@ -4,9 +4,36 @@ const CryptoJS = require("crypto-js");
 const JWT = require("jsonwebtoken");
 const Verify = require("../Helper/Verify");
 
-
 // importing Models
 const User = require("../Models/User");
+
+
+
+// Mail Sending Function
+const sendMail = (token, toEmail) => {
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'harshil.s.pethani9957@gmail.com',
+            pass: process.env.EMAILPASSWORD
+        }
+    });
+
+    var mailOptions = {
+        from: 'harshil.s.pethani9957@gmail.com',
+        to: toEmail,
+        subject: 'CryptoWall Password Reset',
+        text: `As You have Requested for reset password instructions, here they are, please click the URL or Copy the URL and Paste in your Browser \nhttps://cryptowal.herokuapp.com/api/auth/reset_password?reset_password_token=${token}`
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Email Sent");
+        }
+    })
+}
 
 
 // Register => /api/auth/register
@@ -108,12 +135,13 @@ router.post("/login", async (req, res) => {
     }
 })
 
-// Login => /api/auth/login
-router.post("/login", async (req, res) => {
-    if (!req.body.email || !req.body.password) {
+
+// Forgot => /api/auth/forgot
+router.post("/forgot", async (req, res) => {
+    if (!req.body.email) {
         res.status(201).json({
             "success": false,
-            "message": "Please Fill all the Fields"
+            "message": "Please Enter the Email Id"
         });
         return;
     }
@@ -124,20 +152,7 @@ router.post("/login", async (req, res) => {
         if (!user) {
             res.status(201).send({
                 "success": false,
-                "message": "Invalid Credentials"
-            });
-            return;
-        }
-
-        const decryptedPass = CryptoJS.AES.decrypt(
-            user.password,
-            process.env.AES_SEC_KEY
-        ).toString(CryptoJS.enc.Utf8);
-
-        if (decryptedPass !== req.body.password) {
-            res.status(201).json({
-                "success": false,
-                "message": "Invalid Credentials"
+                "message": "User Not Found"
             });
             return;
         }
@@ -145,31 +160,27 @@ router.post("/login", async (req, res) => {
         const accessToken = JWT.sign(
             {
                 id: user._id,
+                username: user.username
             },
             process.env.JWT_SEC_KEY,
-            { expiresIn: "3d" }
+            { expiresIn: 60 * 5 }
         );
 
-        res.cookie('cryptowall', accessToken, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
-
-        const { password, ...others } = user._doc;
+        sendMail(accessToken, req.body.email);
 
         res.status(201).json({
             "success": true,
-            "message": "Login Success",
-            ...others,
-            accessToken
+            "message": "Password Reset Email Has been Sent.",
         });
 
     } catch (e) {
         console.log(e)
         res.status(500).json({
             "success": false,
-            "message": "Login Failed Internal Server Error"
+            "message": "Password Reset Failed"
         });
     }
 })
-
 
 // Find => /api/auth/find
 router.get("/find", Verify, async (req, res) => {

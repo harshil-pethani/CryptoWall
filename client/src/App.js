@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
+import Forgot from './Pages/Forgot/Forgot';
 import Markets from './Pages/Markets/Markets';
 import News from './Pages/News/News';
 import Signup from './Pages/Signup/Signup';
@@ -47,6 +48,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={user ? <Navigate to="/" /> : <Login />} />
             <Route exact path="/signup" element={user ? <Navigate to="/" /> : <Signup />} />
+            <Route exact path="/forgot" element={user ? <Navigate to="/" /> : <Forgot />} />
             <Route exact path="/markets" element={<Markets />} />
             <Route exact path="/favourites" element={user ? <Favourites /> : <Navigate to="/login" />} />
             <Route exact path="/news" element={<News />} />
