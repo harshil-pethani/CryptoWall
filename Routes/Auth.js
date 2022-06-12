@@ -177,9 +177,7 @@ router.post("/forgot", async (req, res) => {
         console.log(e)
         res.status(500).json({
             "success": false,
-            "message": "Password Reset Failed",
-            "token": accessToken,
-            "error": e
+            "message": "Password Reset Failed"
         });
     }
 })
