@@ -37,6 +37,8 @@ export const registerUser = `https://cryptowal.herokuapp.com/api/auth/register`;
 
 export const loginUser = `https://cryptowal.herokuapp.com/api/auth/login`;
 
+export const forgotUser = `https://cryptowal.herokuapp.com/api/auth/forgot`;
+
 export const logoutUser = `https://cryptowal.herokuapp.com/api/auth/logout`;
 
 export const findUser = `https://cryptowal.herokuapp.com/api/auth/find`;

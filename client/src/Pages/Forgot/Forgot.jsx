@@ -4,44 +4,39 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import './forgot.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { loginImage, loginUser } from '../../Config/api';
+import { loginImage, forgotUser } from '../../Config/api';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 
-const Login = () => {
+const Forgot = () => {
     const navigate = useNavigate();
+    const [email, setEmail] = useState("");
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        // try {
-        //     const { data } = await axios.post(loginUser, userData);
-        //     if (data.success === true) {
-        //         // console.log(data);
-        //         setUser(data);
-        //         toast.success(data.message, {
-        //             position: "top-center"
-        //         });
-        //         setTimeout(() => {
-        //             navigate('/');
-        //             // window.location.reload();
-        //         }, 3000);
-        //     } else {
-        //         toast.error(data.message, {
-        //             position: "top-center"
-        //         })
-        //     }
-        // } catch (e) {
-        //     toast.error("Something went wrong", {
-        //         position: "top-center"
-        //     })
-        //     console.log(e);
-        // }
+        try {
+            const { data } = await axios.post(forgotUser, email);
+            if (data.success === true) {
+                // console.log(data);
+                toast.success(data.message, {
+                    position: "top-center"
+                });
+            } else {
+                toast.error(data.message, {
+                    position: "top-center"
+                })
+            }
+        } catch (e) {
+            toast.error("Something went wrong", {
+                position: "top-center"
+            })
+            console.log(e);
+        }
     }
 
-
     return (
-        <div className="loginPage">
+        <div className="forgotPage">
             <Navbar />
             <div className="mainContainer">
                 <div className="loginleft">
@@ -52,7 +47,7 @@ const Login = () => {
                         Forgot Password
                     </h1>
                     <p>
-                        Enter Your Email Id For which You want to Reset Password     
+                        Enter Your Email Id For which You want to Reset Password
                     </p>
                     <form action="">
                         <div className="formItem">
@@ -60,7 +55,7 @@ const Login = () => {
                                 Email
                             </label>
                             <br />
-                            <input id="emailid" type="email" placeholder="Enter Your Email" />
+                            <input id="emailid" type="email" placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <button onClick={(e) => handleLogin(e)}>
                             Send
@@ -80,4 +75,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Forgot
