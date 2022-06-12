@@ -52,7 +52,7 @@ const Login = () => {
                         Forgot Password
                     </h1>
                     <p>
-                        Enter Your Email Id For which You want to Reset Password
+                        Enter Your Email Id For which You want to Reset Password     
                     </p>
                     <form action="">
                         <div className="formItem">
