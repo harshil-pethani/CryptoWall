@@ -141,7 +141,7 @@ router.post("/forgot", async (req, res) => {
     if (!req.body.email) {
         res.status(201).json({
             "success": false,
-            "message": req.body
+            "message": "Please Enter the Email Id"
         });
         return;
     }
