@@ -71,7 +71,7 @@ const Login = () => {
                             <br />
                             <input id="password" type="password" placeholder="Enter Your Password" onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }} />
                         </div>
-                        <NavLink to="/signup">
+                        <NavLink to="/forgot">
                             Forgot Password?
                         </NavLink>
 
