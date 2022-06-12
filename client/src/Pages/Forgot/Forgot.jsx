@@ -16,7 +16,7 @@ const Forgot = () => {
         e.preventDefault();
 
         try {
-            const { data } = await axios.post(forgotUser, email);
+            const { data } = await axios.post(forgotUser, { email });
             if (data.success === true) {
                 // console.log(data);
                 toast.success(data.message, {
