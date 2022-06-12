@@ -14,29 +14,29 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        try {
-            const { data } = await axios.post(loginUser, userData);
-            if (data.success === true) {
-                // console.log(data);
-                setUser(data);
-                toast.success(data.message, {
-                    position: "top-center"
-                });
-                setTimeout(() => {
-                    navigate('/');
-                    // window.location.reload();
-                }, 3000);
-            } else {
-                toast.error(data.message, {
-                    position: "top-center"
-                })
-            }
-        } catch (e) {
-            toast.error("Something went wrong", {
-                position: "top-center"
-            })
-            console.log(e);
-        }
+        // try {
+        //     const { data } = await axios.post(loginUser, userData);
+        //     if (data.success === true) {
+        //         // console.log(data);
+        //         setUser(data);
+        //         toast.success(data.message, {
+        //             position: "top-center"
+        //         });
+        //         setTimeout(() => {
+        //             navigate('/');
+        //             // window.location.reload();
+        //         }, 3000);
+        //     } else {
+        //         toast.error(data.message, {
+        //             position: "top-center"
+        //         })
+        //     }
+        // } catch (e) {
+        //     toast.error("Something went wrong", {
+        //         position: "top-center"
+        //     })
+        //     console.log(e);
+        // }
     }
 
 
@@ -60,9 +60,7 @@ const Login = () => {
                                 Email
                             </label>
                             <br />
-                            <input id="emailid" type="email" placeholder="Enter Your Email" onChange={(e) => {
-                                setUserData({ ...userData, email: e.target.value });
-                            }} />
+                            <input id="emailid" type="email" placeholder="Enter Your Email" />
                         </div>
                         <button onClick={(e) => handleLogin(e)}>
                             Send
