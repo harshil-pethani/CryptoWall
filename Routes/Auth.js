@@ -157,16 +157,16 @@ router.post("/forgot", async (req, res) => {
             return;
         }
 
-        const accessToken = JWT.sign(
-            {
-                id: user._id,
-                username: user.username
-            },
-            process.env.JWT_SEC_KEY,
-            { expiresIn: 60 * 5 }
-        );
+        // const accessToken = JWT.sign(
+        //     {
+        //         id: user._id,
+        //         username: user.username
+        //     },
+        //     process.env.JWT_SEC_KEY,
+        //     { expiresIn: 60 * 5 }
+        // );
 
-        sendMail(accessToken, req.body.email);
+        sendMail("accessToken", req.body.email);
 
         res.status(201).json({
             "success": true,
