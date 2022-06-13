@@ -12,8 +12,8 @@ const Reset = () => {
     const [resetPassword, setResetPassword] = useState("");
     const [retypePassword, setRetypePassword] = useState("");
     const [userId, setUserId] = useState("");
-    const [tokenVerified, setTokenVerified] = useState(true);
-    const [tokenErrorMsg, setTokenErrorMsg] = useState("");
+    const [tokenVerified, setTokenVerified] = useState(false);
+    const [tokenErrorMsg, setTokenErrorMsg] = useState("Wait For a Moment ... ");
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -22,12 +22,13 @@ const Reset = () => {
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get("reset_password_token");
-        console.log(token);
+        // console.log(token);
 
         const checkToken = async (token) => {
             const res = await axios.post(resetTokenVerify, { token });
+            console.log(res.data);
 
-            if (res.data.success === true) {
+            if (res?.data.success === true) {
                 setTokenVerified(true);
                 setUserId(res.data.userId);
             } else {
