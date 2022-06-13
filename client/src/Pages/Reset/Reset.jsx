@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import './reset.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,11 +9,15 @@ import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 
 const Reset = () => {
-    const [resetPassword,setResetPassword] = useState("");
-    const [retypePassword,setRetypePassword] = useState("");
-    const navigate = useNavigate();
+    const [resetPassword, setResetPassword] = useState("");
+    const [retypePassword, setRetypePassword] = useState("");
 
-    const handleChangePassword = async (e) => {
+    const location = useLocation();
+
+    const token = location.pathname.split("?")[1];
+    console.log(token);
+
+    const handleResetPassword = async (e) => {
         e.preventDefault();
 
         // try {
@@ -65,7 +69,7 @@ const Reset = () => {
                             <br />
                             <input id="retypePassword" type="password" placeholder="ReType New Password" onChange={(e) => setRetypePassword(e.target.value)} />
                         </div>
-                        <button onClick={(e) => handleChangePassword(e)}>
+                        <button onClick={(e) => handleResetPassword(e)}>
                             Change Password
                         </button>
                     </form>

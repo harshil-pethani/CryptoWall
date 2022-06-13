@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import './forgot.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,16 +9,14 @@ import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 
 const Forgot = () => {
-    const navigate = useNavigate();
     const [email, setEmail] = useState("");
 
-    const handleLogin = async (e) => {
+    const handleForgot = async (e) => {
         e.preventDefault();
 
         try {
             const { data } = await axios.post(forgotUser, { email });
             if (data.success === true) {
-                // console.log(data);
                 toast.success(data.message, {
                     position: "top-center"
                 });
@@ -57,7 +55,7 @@ const Forgot = () => {
                             <br />
                             <input id="emailid" type="email" placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
                         </div>
-                        <button onClick={(e) => handleLogin(e)}>
+                        <button onClick={(e) => handleForgot(e)}>
                             Send
                         </button>
                     </form>

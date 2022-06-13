@@ -24,7 +24,7 @@ const sendMail = (token, toEmail) => {
         from: 'harshil.s.pethani9957@gmail.com',
         to: toEmail,
         subject: 'CryptoWall Password Reset',
-        text: `As You have Requested for reset password instructions, here they are, please click the URL or Copy the URL and Paste in your Browser \nhttps://cryptowal.herokuapp.com/api/auth/reset_password?reset_password_token=${token}`
+        text: `As You have Requested for reset password instructions, here they are, please click the URL or Copy the URL and Paste in your Browser \nhttps://cryptowal.herokuapp.com/reset_password?reset_password_token=${token}`
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
