@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
-import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import './reset.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,13 +11,18 @@ import Footer from '../../Components/Footer/Footer';
 const Reset = () => {
     const [resetPassword, setResetPassword] = useState("");
     const [retypePassword, setRetypePassword] = useState("");
-    const [searchParams, setSearchParams] = useSearchParams();
 
+    const location = useLocation();
+    const queryParams = new URLSearchParams(window.location.search);
+    const token = queryParams.get("reset_password_token");
+    
+    const queryParams2 = new URLSearchParams(location.search);
+    const token2 = queryParams2.get("reset_password_token");
 
-    // const location = useLocation();
-
-    searchParams.get("__firebase_request_key");
-    console.log(searchParams);
+    console.log(`q1 ${queryParams}`);
+    console.log(`q2 ${queryParams2}`);
+    console.log(token);
+    console.log(token2);
 
     const handleResetPassword = async (e) => {
         e.preventDefault();
