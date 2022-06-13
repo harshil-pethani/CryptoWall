@@ -14,6 +14,7 @@ import { findCoinList } from './Config/api';
 import axios from 'axios';
 import Favourites from './Pages/Favourites/Favourites';
 import Profile from './Pages/Profile/Profile';
+import Reset from './Pages/Reset/Reset';
 
 
 export const currencyContext = createContext();
@@ -49,7 +50,7 @@ function App() {
             <Route exact path="/login" element={user ? <Navigate to="/" /> : <Login />} />
             <Route exact path="/signup" element={user ? <Navigate to="/" /> : <Signup />} />
             <Route exact path="/forgot" element={user ? <Navigate to="/" /> : <Forgot />} />
-            <Route exact path="/reset_passoword/:reset_password_token" element={<SingleCoinPage />} />
+            <Route exact path="/reset_passoword/:reset_password_token"  element={user ? <Navigate to="/" /> : <Reset />} />
             <Route exact path="/markets" element={<Markets />} />
             <Route exact path="/favourites" element={user ? <Favourites /> : <Navigate to="/login" />} />
             <Route exact path="/news" element={<News />} />
