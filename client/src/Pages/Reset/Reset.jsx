@@ -12,7 +12,7 @@ const Reset = () => {
     const [resetPassword, setResetPassword] = useState("");
     const [retypePassword, setRetypePassword] = useState("");
     const [userId, setUserId] = useState("");
-    const [tokenVerified, setTokenVerified] = useState(false);
+    const [tokenVerified, setTokenVerified] = useState(true);
     const [tokenErrorMsg, setTokenErrorMsg] = useState("");
 
     const location = useLocation();
