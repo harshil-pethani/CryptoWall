@@ -16,7 +16,7 @@ const Verify = async (req, res, next) => {
             // console.log(rootUser);
 
             if (!rootUser) {
-                return res.status(401).json({
+                return res.status(201).json({
                     "success": false,
                     "message": "User Not Found"
                 })
@@ -32,7 +32,7 @@ const Verify = async (req, res, next) => {
             next();
 
         } else {
-            return res.status(401).json({
+            return res.status(201).json({
                 "success": false,
                 "message": "Please Login to Perform This"
             })

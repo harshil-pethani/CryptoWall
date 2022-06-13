@@ -22,7 +22,6 @@ const Reset = () => {
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get("reset_password_token");
-        // console.log(token);
 
         const checkToken = async (token) => {
             const res = await axios.post(resetTokenVerify, { token });

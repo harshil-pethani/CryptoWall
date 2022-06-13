@@ -199,7 +199,7 @@ router.post("/reset_token_verify", async (req, res) => {
         });
 
         if (!rootUser) {
-            return res.status(401).json({
+            return res.status(201).json({
                 "success": false,
                 "message": "User Not Found For Password Reset"
             })
@@ -212,7 +212,7 @@ router.post("/reset_token_verify", async (req, res) => {
 
     } catch (e) {
         // console.log(e)
-        res.status(500).json({
+        res.status(201).json({
             "success": false,
             "message": "Invalid Password Reset URL",
         });
