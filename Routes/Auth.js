@@ -175,7 +175,7 @@ router.post("/forgot", async (req, res) => {
         });
 
     } catch (e) {
-        console.log(e)
+        // console.log(e)
         res.status(500).json({
             "success": false,
             "message": "Password Reset Failed",
@@ -183,8 +183,8 @@ router.post("/forgot", async (req, res) => {
     }
 })
 
-// Forgot => /api/auth/resetTokenVerify
-router.post("/resetTokenVerify", async (req, res) => {
+// Reset Token Verify => /api/auth/reset_token_verify
+router.post("/reset_token_verify", async (req, res) => {
     if (!req.body.token) {
         return res.status(201).json({
             "success": false,
@@ -206,13 +206,65 @@ router.post("/resetTokenVerify", async (req, res) => {
         }
 
         res.status(201).json({
-            "success": true
+            "success": true,
+            userId: verified.id
         });
+
     } catch (e) {
-        console.log(e)
+        // console.log(e)
         res.status(500).json({
             "success": false,
-            "message": "Something Went Wrong",
+            "message": "Invalid Password Reset URL",
+        });
+    }
+})
+
+// Reset Password => /api/auth/reset_password
+router.put("/reset_password", async (req, res) => {
+    if (!req.body.resetPassword || !req.body.retypePassword) {
+        return res.status(201).json({
+            "success": false,
+            "message": "Please Fill all the Fields"
+        });
+    }
+
+    try {
+
+        const rootUser = await User.findOne({
+            _id: req.body.userId
+        });
+
+        if (!rootUser) {
+            return res.status(401).json({
+                "success": false,
+                "message": "User Not Found For Password Reset"
+            })
+        }
+
+        if (req.body.resetPassword === req.body.retypePassword) {
+            const updateUser = await User.findByIdAndUpdate(req.body.userId,
+                {
+                    password: CryptoJS.AES.encrypt(req.body.resetPassword, process.env.AES_SEC_KEY).toString()
+                }, { new: true }
+            );
+
+
+            res.status(200).json({
+                "success": true, 
+                "message":"Password Reset Successful"
+            });
+            return;
+
+        } else {
+            res.status(201).json({ "success": false, "message": "Both Value Must be Same" });
+            return;
+        }
+
+    } catch (e) {
+        // console.log(e)
+        res.status(500).json({
+            "success": false,
+            "message": "Password Reset Failed",
         });
     }
 })

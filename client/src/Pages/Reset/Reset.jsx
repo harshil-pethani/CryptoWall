@@ -1,20 +1,22 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import './reset.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { loginImage, resetTokenVerify } from '../../Config/api';
+import { loginImage, resetPasswordApi } from '../../Config/api';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 
 const Reset = () => {
     const [resetPassword, setResetPassword] = useState("");
     const [retypePassword, setRetypePassword] = useState("");
+    const [userId, setUserId] = useState("");
     const [tokenVerified, setTokenVerified] = useState(false);
-    const [tokenErrorMsg, setTokenErrorMsg] = useState("");
+    const [tokenErrorMsg, setTokenErrorMsg] = useState("Wait for a Moment ...");
 
     const location = useLocation();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -26,12 +28,10 @@ const Reset = () => {
             const res = await axios.post(resetTokenVerify, { token });
             if (res.data.success === true) {
                 setTokenVerified(true);
+                setUserId(res.data.userId);
             } else {
                 setTokenVerified(false);
                 setTokenErrorMsg(res.data.message);
-                toast.error(res.data.message, {
-                    position: "top-center"
-                })
             }
         }
         checkToken(token);
@@ -40,24 +40,26 @@ const Reset = () => {
     const handleResetPassword = async (e) => {
         e.preventDefault();
 
-        // try {
-        //     const { data } = await axios.post(forgotUser, { email });
-        //     if (data.success === true) {
-        //         // console.log(data);
-        //         toast.success(data.message, {
-        //             position: "top-center"
-        //         });
-        //     } else {
-        //         toast.error(data.message, {
-        //             position: "top-center"
-        //         })
-        //     }
-        // } catch (e) {
-        //     toast.error("Something went wrong", {
-        //         position: "top-center"
-        //     })
-        //     console.log(e);
-        // }
+        try {
+            const { data } = await axios.put(resetPasswordApi, { resetPassword, retypePassword, userId });
+            if (data.success === true) {
+                toast.success(data.message, {
+                    position: "top-center"
+                });
+                setTimeout(() => {
+                    navigate("/login");
+                }, 3000);
+            } else {
+                toast.error(data.message, {
+                    position: "top-center"
+                })
+            }
+        } catch (e) {
+            toast.error("Password Reset Failed", {
+                position: "top-center"
+            })
+            console.log(e);
+        }
     }
 
     return (
@@ -101,10 +103,10 @@ const Reset = () => {
                     )
                     :
                     (
-                        <div className="mainContainer" style={{ justifyContent: "center", height: "300px" }}>
-                            <h3>
+                        <div className="mainContainer" style={{ justifyContent: "center", height: "300px", color: "white" }}>
+                            <h1 className="tokenError">
                                 {tokenErrorMsg}
-                            </h3>
+                            </h1>
                         </div>
                     )
             }

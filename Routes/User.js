@@ -6,7 +6,7 @@ const CryptoJS = require("crypto-js");
 
 
 router.put("/update", Verify, async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     if (!req.body.username || !req.body.email) {
         res.status(201).json({ "success": false, "message": "Please Fill Username and Email" });
         return;
