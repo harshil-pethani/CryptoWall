@@ -208,7 +208,6 @@ router.post("/resetTokenVerify", async (req, res) => {
         res.status(201).json({
             "success": true
         });
-
     } catch (e) {
         console.log(e)
         res.status(500).json({

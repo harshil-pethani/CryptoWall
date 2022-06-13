@@ -39,8 +39,6 @@ function App() {
     getUser();
   }, []);
 
-
-
   return (
     <currencyContext.Provider value={{ currency, setCurrency }} >
       <userContext.Provider value={{ user, setUser, favCoins, setFavCoins }}>
@@ -50,7 +48,7 @@ function App() {
             <Route exact path="/login" element={user ? <Navigate to="/" /> : <Login />} />
             <Route exact path="/signup" element={user ? <Navigate to="/" /> : <Signup />} />
             <Route exact path="/forgot" element={user ? <Navigate to="/" /> : <Forgot />} />
-            <Route exact path="/reset_passoword" element={user ? <Navigate to="/" /> : <Reset />} />
+            <Route exact path="/reset_password" element={user ? <Navigate to="/" /> : <Reset />} />
             <Route exact path="/markets" element={<Markets />} />
             <Route exact path="/favourites" element={user ? <Favourites /> : <Navigate to="/login" />} />
             <Route exact path="/news" element={<News />} />
@@ -64,4 +62,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
