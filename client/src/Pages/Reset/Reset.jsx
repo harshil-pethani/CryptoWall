@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import './reset.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { loginImage, resetPasswordApi } from '../../Config/api';
+import { loginImage, resetPasswordApi, resetTokenVerify } from '../../Config/api';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 
