@@ -49,6 +49,7 @@ function App() {
             <Route exact path="/login" element={user ? <Navigate to="/" /> : <Login />} />
             <Route exact path="/signup" element={user ? <Navigate to="/" /> : <Signup />} />
             <Route exact path="/forgot" element={user ? <Navigate to="/" /> : <Forgot />} />
+            <Route exact path="/reset_passoword/:reset_password_token" element={<SingleCoinPage />} />
             <Route exact path="/markets" element={<Markets />} />
             <Route exact path="/favourites" element={user ? <Favourites /> : <Navigate to="/login" />} />
             <Route exact path="/news" element={<News />} />
