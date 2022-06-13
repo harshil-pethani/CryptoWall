@@ -31,6 +31,7 @@ const Reset = () => {
                 setTokenVerified(true);
                 setUserId(res.data.userId);
             } else {
+                console.log(res.data);
                 setTokenVerified(false);
                 setTokenErrorMsg(res.data.message);
             }

@@ -250,13 +250,15 @@ router.put("/reset_password", async (req, res) => {
 
 
             res.status(200).json({
-                "success": true, 
-                "message":"Password Reset Successful"
+                "success": true,
+                "message": "Password Reset Successful"
             });
             return;
 
         } else {
-            res.status(201).json({ "success": false, "message": "Both Value Must be Same" });
+            res.status(201).json({
+                "success": false, "message": "Both Value Must be Same"
+            });
             return;
         }
 
