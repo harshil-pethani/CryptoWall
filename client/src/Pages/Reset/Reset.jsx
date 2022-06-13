@@ -24,16 +24,19 @@ const Reset = () => {
         const token = queryParams.get("reset_password_token");
 
         const checkToken = async (token) => {
-            const res = await axios.post(resetTokenVerify, { token });
-            console.log(res.data);
+            try {
+                const res = await axios.post(resetTokenVerify, { token });
 
-            if (res?.data.success === true) {
-                setTokenVerified(true);
-                setUserId(res.data.userId);
-            } else {
-                console.log(res.data);
+                if (res?.data.success === true) {
+                    setTokenVerified(true);
+                    setUserId(res.data.userId);
+                } else {
+                    setTokenVerified(false);
+                    setTokenErrorMsg(res.data.message);
+                }
+            } catch (e) {
                 setTokenVerified(false);
-                setTokenErrorMsg(res.data.message);
+                setTokenErrorMsg("Something Went Wrong");
             }
         }
         checkToken(token);
@@ -65,7 +68,7 @@ const Reset = () => {
     }
 
     return (
-        <div className="forgotPage">
+        <div className="resetPage">
             <Navbar />
             {
                 tokenVerified ?
