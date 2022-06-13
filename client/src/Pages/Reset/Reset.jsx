@@ -13,7 +13,7 @@ const Reset = () => {
     const [retypePassword, setRetypePassword] = useState("");
     const [userId, setUserId] = useState("");
     const [tokenVerified, setTokenVerified] = useState(false);
-    const [tokenErrorMsg, setTokenErrorMsg] = useState("Wait for a Moment ...");
+    const [tokenErrorMsg, setTokenErrorMsg] = useState("");
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -26,6 +26,7 @@ const Reset = () => {
 
         const checkToken = async (token) => {
             const res = await axios.post(resetTokenVerify, { token });
+
             if (res.data.success === true) {
                 setTokenVerified(true);
                 setUserId(res.data.userId);
