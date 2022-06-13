@@ -4,25 +4,38 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import './reset.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { loginImage, forgotUser } from '../../Config/api';
+import { loginImage, resetTokenVerify } from '../../Config/api';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 
 const Reset = () => {
     const [resetPassword, setResetPassword] = useState("");
     const [retypePassword, setRetypePassword] = useState("");
+    const [tokenVerified, setTokenVerified] = useState(false);
+    const [tokenErrorMsg, setTokenErrorMsg] = useState("");
 
     const location = useLocation();
-    const queryParams = new URLSearchParams(window.location.search);
-    const token = queryParams.get("reset_password_token");
-    
-    const queryParams2 = new URLSearchParams(location.search);
-    const token2 = queryParams2.get("reset_password_token");
 
-    console.log(`q1 ${queryParams}`);
-    console.log(`q2 ${queryParams2}`);
-    console.log(token);
-    console.log(token2);
+
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const token = queryParams.get("reset_password_token");
+        console.log(token);
+
+        const checkToken = async (token) => {
+            const res = await axios.post(resetTokenVerify, { token });
+            if (res.data.success === true) {
+                setTokenVerified(true);
+            } else {
+                setTokenVerified(false);
+                setTokenErrorMsg(res.data.message);
+                toast.error(res.data.message, {
+                    position: "top-center"
+                })
+            }
+        }
+        checkToken(token);
+    }, []);
 
     const handleResetPassword = async (e) => {
         e.preventDefault();
@@ -50,38 +63,51 @@ const Reset = () => {
     return (
         <div className="forgotPage">
             <Navbar />
-            <div className="mainContainer">
-                <div className="loginleft">
-                    <img src={loginImage} alt="" />
-                </div>
-                <div className="loginright">
-                    <h1 className="title">
-                        Reset Password
-                    </h1>
-                    <p>
-                        Enter Your New Password
-                    </p>
-                    <form action="">
-                        <div className="formItem">
-                            <label htmlFor="resetPassword">
-                                Password
-                            </label>
-                            <br />
-                            <input id="resetPassword" type="password" placeholder="New Password" onChange={(e) => setResetPassword(e.target.value)} />
+            {
+                tokenVerified ?
+                    (
+                        <div className="mainContainer">
+                            <div className="loginleft">
+                                <img src={loginImage} alt="" />
+                            </div>
+                            <div className="loginright">
+                                <h1 className="title">
+                                    Reset Password
+                                </h1>
+                                <p>
+                                    Enter Your New Password
+                                </p>
+                                <form action="">
+                                    <div className="formItem">
+                                        <label htmlFor="resetPassword">
+                                            Password
+                                        </label>
+                                        <br />
+                                        <input id="resetPassword" type="password" placeholder="New Password" onChange={(e) => setResetPassword(e.target.value)} />
+                                    </div>
+                                    <div className="formItem">
+                                        <label htmlFor="retypePassword">
+                                            ReType Password
+                                        </label>
+                                        <br />
+                                        <input id="retypePassword" type="password" placeholder="ReType New Password" onChange={(e) => setRetypePassword(e.target.value)} />
+                                    </div>
+                                    <button onClick={(e) => handleResetPassword(e)}>
+                                        Change Password
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                        <div className="formItem">
-                            <label htmlFor="retypePassword">
-                                ReType Password
-                            </label>
-                            <br />
-                            <input id="retypePassword" type="password" placeholder="ReType New Password" onChange={(e) => setRetypePassword(e.target.value)} />
+                    )
+                    :
+                    (
+                        <div className="mainContainer" style={{ justifyContent: "center", height: "300px" }}>
+                            <h3>
+                                {tokenErrorMsg}
+                            </h3>
                         </div>
-                        <button onClick={(e) => handleResetPassword(e)}>
-                            Change Password
-                        </button>
-                    </form>
-                </div>
-            </div>
+                    )
+            }
             <Footer />
             <ToastContainer />
         </div>

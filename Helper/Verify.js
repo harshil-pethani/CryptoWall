@@ -16,7 +16,10 @@ const Verify = async (req, res, next) => {
             // console.log(rootUser);
 
             if (!rootUser) {
-                throw new Error("User Not Found");
+                return res.status(401).json({
+                    "success": false,
+                    "message": "User Not Found"
+                })
             }
 
             req.token = token;

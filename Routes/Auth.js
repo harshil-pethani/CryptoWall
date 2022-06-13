@@ -183,6 +183,41 @@ router.post("/forgot", async (req, res) => {
     }
 })
 
+// Forgot => /api/auth/resetTokenVerify
+router.post("/resetTokenVerify", async (req, res) => {
+    if (!req.body.token) {
+        return res.status(201).json({
+            "success": false,
+            "message": "Invalid Password Reset URL"
+        });
+    }
+
+    try {
+        const verified = JWT.verify(req.body.token, process.env.JWT_SEC_KEY);
+        const rootUser = await User.findOne({
+            _id: verified.id
+        });
+
+        if (!rootUser) {
+            return res.status(401).json({
+                "success": false,
+                "message": "User Not Found For Password Reset"
+            })
+        }
+
+        res.status(201).json({
+            "success": true
+        });
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            "success": false,
+            "message": "Something Went Wrong",
+        });
+    }
+})
+
 // Find => /api/auth/find
 router.get("/find", Verify, async (req, res) => {
     // console.log(req.rootUser);
@@ -202,6 +237,8 @@ router.get("/logout", async (req, res) => {
         "message": "Logout Successfull"
     })
 })
+
+
 
 
 module.exports = router;
