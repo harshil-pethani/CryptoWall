@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000'],
+    origin: ['https://prickly-underclothes-moth.cyclic.app'],
     methods: ["GET", "PUT", "POST", "DELETE"],
 }))
 app.use(cookieParser())
