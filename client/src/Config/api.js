@@ -33,25 +33,25 @@ export const signupImage = `https://firebasestorage.googleapis.com/v0/b/cryptowa
 
 export const subscribeImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fsubscribe.png?alt=media&token=db5e7d87-8d15-4e5e-ab99-65d29b1bd14a`;
 
-export const registerUser = `http://localhost:5000/api/auth/register`;
+export const registerUser = `/api/auth/register`;
 
-export const loginUser = `http://localhost:5000/api/auth/login`;
+export const loginUser = `/api/auth/login`;
 
-export const forgotUser = `http://localhost:5000/api/auth/forgot`;
+export const forgotUser = `/api/auth/forgot`;
 
-export const resetTokenVerify = `http://localhost:5000/api/auth/reset_token_verify`;
+export const resetTokenVerify = `/api/auth/reset_token_verify`;
 
-export const resetPasswordApi = `http://localhost:5000/api/auth/reset_password`;
+export const resetPasswordApi = `/api/auth/reset_password`;
 
-export const logoutUser = `http://localhost:5000/api/auth/logout`;
+export const logoutUser = `/api/auth/logout`;
 
-export const findUser = `http://localhost:5000/api/auth/find`;
+export const findUser = `/api/auth/find`;
 
-export const updateUser = `http://localhost:5000/api/user/update`;
+export const updateUser = `/api/user/update`;
 
-export const findCoinList = `http://localhost:5000/api/coin/find`;
+export const findCoinList = `/api/coin/find`;
 
-export const addCoinList = `http://localhost:5000/api/coin/add`;
+export const addCoinList = `/api/coin/add`;
 
 export const avatarUrl = `https://firebasestorage.googleapis.com/v0/b/luxuryhub-3b0f6.appspot.com/o/Site%20Images%2Fprofile.png?alt=media&token=6f94d26d-315c-478b-9892-67fda99d2cd6`;
 
@@ -60,4 +60,4 @@ export const avatarUrl = `https://firebasestorage.googleapis.com/v0/b/luxuryhub-
 // "@testing-library/react": "^12.1.4",
 // "@testing-library/user-event": "^13.5.0",
 // "web-vitals": "^2.1.4"
-// "proxy": "http://localhost:5000/api/",
+// "proxy": "/api/",
