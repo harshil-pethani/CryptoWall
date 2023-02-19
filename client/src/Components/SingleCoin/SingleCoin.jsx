@@ -48,7 +48,7 @@ const SingleCoin = () => {
         } else {
             favCoins.push(id);
             try {
-                const { data } = await axios.post(addCoinList, { coinList: favCoins });
+                const { data } = await axios.post(addCoinList, { coinList: favCoins }, { withCredentials: true });
                 setIsFav(true);
                 toast.success(data.message, {
                     position: "top-center"
@@ -67,7 +67,7 @@ const SingleCoin = () => {
 
             console.log(favCoins);
             try {
-                const { data } = await axios.post(addCoinList, { coinList: favCoins.filter(item => item !== id) });
+                const { data } = await axios.post(addCoinList, { coinList: favCoins.filter(item => item !== id) }, { withCredentials: true });
                 toast.success("Coin removed from List", {
                     position: "top-center"
                 });

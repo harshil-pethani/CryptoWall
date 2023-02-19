@@ -25,10 +25,11 @@ function App() {
   const [currency, setCurrency] = useState("inr");
   const [user, setUser] = useState(null);
   const [favCoins, setFavCoins] = useState([]);
+  // console.log(user)
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get(findCoinList);
+      const res = await axios.get(findCoinList, { withCredentials: true });
       if (res.data.success === true) {
         (res.data.coinList) && setFavCoins(res.data.coinList);
         setUser(res.data.rootUser);

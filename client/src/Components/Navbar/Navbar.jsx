@@ -17,7 +17,7 @@ const Navbar = () => {
     const handleLogout = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.get(logoutUser);
+            const res = await axios.get(logoutUser, { withCredentials: true });
             if (res.data.success === true) {
                 setUser(null);
                 navigate("/login");

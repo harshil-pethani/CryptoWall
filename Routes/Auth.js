@@ -8,8 +8,6 @@ const nodemailer = require("nodemailer");
 // importing Models
 const User = require("../Models/User");
 
-
-
 // Mail Sending Function
 const sendMail = (token, toEmail) => {
     var transporter = nodemailer.createTransport({
@@ -35,7 +33,6 @@ const sendMail = (token, toEmail) => {
         }
     })
 }
-
 
 // Register => /api/auth/register
 router.post("/register", async (req, res) => {
@@ -73,7 +70,6 @@ router.post("/register", async (req, res) => {
     }
 })
 
-
 // Login => /api/auth/login
 router.post("/login", async (req, res) => {
     if (!req.body.email || !req.body.password) {
@@ -90,7 +86,7 @@ router.post("/login", async (req, res) => {
         if (!user) {
             res.status(201).send({
                 "success": false,
-                "message": "Invalid Credentials"
+                "message": "Invalid Credentials f"
             });
             return;
         }
@@ -100,10 +96,12 @@ router.post("/login", async (req, res) => {
             process.env.AES_SEC_KEY
         ).toString(CryptoJS.enc.Utf8);
 
+        // console.log(decryptedPass);
+
         if (decryptedPass !== req.body.password) {
             res.status(201).json({
                 "success": false,
-                "message": "Invalid Credentials"
+                "message": "Invalid Credentials p"
             });
             return;
         }
@@ -115,10 +113,10 @@ router.post("/login", async (req, res) => {
             process.env.JWT_SEC_KEY,
             { expiresIn: "3d" }
         );
-
-        res.cookie('cryptowall', accessToken, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
+        res.cookie('cryptowall', accessToken);
 
         const { password, ...others } = user._doc;
+
 
         res.status(201).json({
             "success": true,

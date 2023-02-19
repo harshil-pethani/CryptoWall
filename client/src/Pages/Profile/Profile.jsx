@@ -74,7 +74,7 @@ const Profile = () => {
 
     const updateUserDetails = async (msg) => {
         try {
-            const updateUserData = await axios.put(updateUser, user);
+            const updateUserData = await axios.put(updateUser, user, { withCredentials: true });
             if (updateUserData.data.success === true) {
                 setUser(updateUserData.data);
                 toast.success(msg, {

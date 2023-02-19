@@ -33,25 +33,25 @@ export const signupImage = `https://firebasestorage.googleapis.com/v0/b/cryptowa
 
 export const subscribeImage = `https://firebasestorage.googleapis.com/v0/b/cryptowall-b8bcd.appspot.com/o/Site%2Fsubscribe.png?alt=media&token=db5e7d87-8d15-4e5e-ab99-65d29b1bd14a`;
 
-export const registerUser = `https://cryptowal.herokuapp.com/api/auth/register`;
+export const registerUser = `http://localhost:5000/api/auth/register`;
 
-export const loginUser = `https://cryptowal.herokuapp.com/api/auth/login`;
+export const loginUser = `http://localhost:5000/api/auth/login`;
 
-export const forgotUser = `https://cryptowal.herokuapp.com/api/auth/forgot`;
+export const forgotUser = `http://localhost:5000/api/auth/forgot`;
 
-export const resetTokenVerify = `https://cryptowal.herokuapp.com/api/auth/reset_token_verify`;
+export const resetTokenVerify = `http://localhost:5000/api/auth/reset_token_verify`;
 
-export const resetPasswordApi = `https://cryptowal.herokuapp.com/api/auth/reset_password`;
+export const resetPasswordApi = `http://localhost:5000/api/auth/reset_password`;
 
-export const logoutUser = `https://cryptowal.herokuapp.com/api/auth/logout`;
+export const logoutUser = `http://localhost:5000/api/auth/logout`;
 
-export const findUser = `https://cryptowal.herokuapp.com/api/auth/find`;
+export const findUser = `http://localhost:5000/api/auth/find`;
 
-export const updateUser = `https://cryptowal.herokuapp.com/api/user/update`;
+export const updateUser = `http://localhost:5000/api/user/update`;
 
-export const findCoinList = `https://cryptowal.herokuapp.com/api/coin/find`;
+export const findCoinList = `http://localhost:5000/api/coin/find`;
 
-export const addCoinList = `https://cryptowal.herokuapp.com/api/coin/add`;
+export const addCoinList = `http://localhost:5000/api/coin/add`;
 
 export const avatarUrl = `https://firebasestorage.googleapis.com/v0/b/luxuryhub-3b0f6.appspot.com/o/Site%20Images%2Fprofile.png?alt=media&token=6f94d26d-315c-478b-9892-67fda99d2cd6`;
 

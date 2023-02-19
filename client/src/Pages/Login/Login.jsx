@@ -18,7 +18,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const { data } = await axios.post(loginUser, userData);
+            const { data } = await axios.post(loginUser, userData, { withCredentials: true });
             if (data.success === true) {
                 // console.log(data);
                 setUser(data);

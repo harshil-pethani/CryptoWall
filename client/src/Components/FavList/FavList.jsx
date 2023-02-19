@@ -17,7 +17,7 @@ const FavList = () => {
 
     useEffect(() => {
         const getUser = async () => {
-            const res = await axios.get(findCoinList);
+            const res = await axios.get(findCoinList, { withCredentials: true });
             if (res.data.success === true) {
                 (res.data.coinList) && setFavCoins(res.data.coinList);
                 setUser(res.data.rootUser);
